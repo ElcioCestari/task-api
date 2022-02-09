@@ -23,6 +23,15 @@ export class TaskService {
     return task;
   }
 
+  updateTask(dto: CreateTaskDto, id: string, status: TaskStatus): Task {
+    const { description, title } = dto;
+    const task: Task = this.getTaskById(id);
+    task.description = description;
+    task.title = title;
+    task.status = status;
+    return task;
+  }
+
   getTaskById(id: string): Task {
     return this.tasks.find((task) => task.id === id);
   }
