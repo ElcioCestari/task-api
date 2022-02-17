@@ -1,8 +1,6 @@
 import { TaskRepository } from './task.repository';
-import { Task } from './task.model';
 import { TaskService } from './task.service';
 import { Test, TestingModule } from '@nestjs/testing';
-import { TaskUtils } from 'src/shared/utils/tests/task-utils';
 
 describe('TaskService', () => {
   let service: TaskService;

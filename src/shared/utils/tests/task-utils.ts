@@ -1,4 +1,5 @@
-import { Task, TaskStatus } from './../../../task/task.model';
+import { Task } from 'src/task/task.entity';
+import { TaskStatus } from '../../../task/task-status';
 export abstract class TaskUtils {
   public static getTask(): Task {
     return {
