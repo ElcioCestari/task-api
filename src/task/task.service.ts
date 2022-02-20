@@ -42,7 +42,6 @@ export class TaskService {
   }
 
   async delete(id: string) {
-    await this.repository.findOneOrFail(id);
-    await this.repository.softDelete(id);
+    await this.repository.delete(id);
   }
 }

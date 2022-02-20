@@ -23,7 +23,7 @@ export class TaskController {
   @Get()
   getAllTasks(@Query() filterDto: FilterDto): Promise<Task[]> {
     if (Object.keys(filterDto).length) {
-      // return this.taskService.getTasks(filterDto);
+      return this.taskService.getTasks(filterDto);
     }
     return this.taskService.getAllTasks();
   }
