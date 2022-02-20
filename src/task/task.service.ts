@@ -27,16 +27,22 @@ export class TaskService {
     return await this.repository.save(task);
   }
 
-  updateTask(dto: CreateTaskDto, id: string, status: TaskStatus): Task {
-    // return this.repository.updateTask(dto, id, status);
-    return null;
+  async updateTask(
+    dto: CreateTaskDto,
+    id: string,
+    status: TaskStatus,
+  ): Promise<Task> {
+    const task: Task = await this.repository.findOneOrFail({ id: id });
+    this.repository.merge(task, dto);
+    return await this.repository.save(task);
   }
 
   async getTaskById(id: string): Promise<Task> {
-    return await this.repository.findOne(id);
+    return await this.repository.findOneOrFail(id);
   }
 
   async delete(id: string) {
-    await this.repository.delete(id);
+    await this.repository.findOneOrFail(id);
+    await this.repository.softDelete(id);
   }
 }

@@ -18,6 +18,9 @@ describe('TaskService', () => {
     find: jest.fn(),
     create: jest.fn(),
     save: jest.fn(),
+    findOne: jest.fn(),
+    findOneOrFail: jest.fn(),
+    softDelete: jest.fn(),
   };
 
   beforeAll(async () => {
@@ -56,6 +59,25 @@ describe('TaskService', () => {
 
   describe('createTask', () => {
     it('should be create a task', async () => {
+      const task: Task = new Task();
+      task.id = '123';
+      task.title = 'new title';
+      task.description = 'make some title';
+      task.status = TaskStatus.DONE;
+      repositoryMock.save.mockResolvedValue(task);
+      const dto = {
+        id: '123',
+        title: 'new title',
+        description: 'make some title',
+        status: TaskStatus.DONE,
+      };
+      const result = await service.createTask(dto);
+      expect(result).toEqual(dto);
+    });
+  });
+
+  describe('update', () => {
+    it('should be update a task', async () => {
       const task: Task = new Task();
       task.id = '123';
       task.title = 'new title';
