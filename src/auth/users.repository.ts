@@ -13,7 +13,6 @@ export class UsersRepository extends Repository<User> {
     try {
       await this.save(user);
     } catch (error) {
-      console.log(error);
       throw new ConflictException('already exists user with this name');
     }
   }
