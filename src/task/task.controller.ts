@@ -1,3 +1,4 @@
+import { GetUser } from './../auth/get-user.decorator';
 import { User } from './../auth/user.entity';
 import { FilterDto } from './dto/filter.dto';
 import {
@@ -33,8 +34,8 @@ export class TaskController {
   }
 
   @Post()
-  createTask(@Body() dto: CreateTaskDto): Promise<Task> {
-    return this.taskService.createTask(dto);
+  createTask(@Body() dto: CreateTaskDto, @GetUser() user: User): Promise<Task> {
+    return this.taskService.createTask(dto, user);
   }
 
   @Put('/:id/:status')
