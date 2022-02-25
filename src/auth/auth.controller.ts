@@ -1,3 +1,4 @@
+import { JwtPayload } from './jwt-payload.interface';
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
 import { AuthService } from './auth.service';
 import { Body, Controller, Post } from '@nestjs/common';
@@ -12,7 +13,9 @@ export class AuthController {
   }
 
   @Post('/signin')
-  async signin(@Body() authDto: AuthCredentialsDto): Promise<string> {
+  async signin(
+    @Body() authDto: AuthCredentialsDto,
+  ): Promise<{ accessToken: string }> {
     return this.authService.signin(authDto);
   }
 }

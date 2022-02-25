@@ -7,6 +7,12 @@ export abstract class TaskUtils {
       description: 'its a work that someone wash and cleaning the stuffs',
       title: 'clean',
       status: TaskStatus.OPEN,
+      user: {
+        id: '',
+        username: 'elcio',
+        password: '123456321',
+        tasks: [],
+      },
     };
   }
 

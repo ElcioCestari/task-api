@@ -1,3 +1,4 @@
+import { User } from './../auth/user.entity';
 import { FilterDto } from './dto/filter.dto';
 import {
   Body,
