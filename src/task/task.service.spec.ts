@@ -1,3 +1,4 @@
+import { User } from './../auth/user.entity';
 import { TaskStatus } from './task-status';
 import { FilterDto } from './dto/filter.dto';
 import { Task } from './task.entity';
@@ -11,6 +12,7 @@ const task1 = new Task();
 const task2 = new Task();
 tasksFakes.push(task1);
 tasksFakes.push(task2);
+const userFake: User = new User();
 
 describe('TaskService', () => {
   let service: TaskService;
@@ -71,7 +73,7 @@ describe('TaskService', () => {
         description: 'make some title',
         status: TaskStatus.DONE,
       };
-      const result = await service.createTask(dto);
+      const result = await service.createTask(dto, userFake);
       expect(result).toEqual(dto);
     });
   });
@@ -90,7 +92,7 @@ describe('TaskService', () => {
         description: 'make some title',
         status: TaskStatus.DONE,
       };
-      const result = await service.createTask(dto);
+      const result = await service.createTask(dto, userFake);
       expect(result).toEqual(dto);
     });
   });
